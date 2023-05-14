@@ -6,32 +6,22 @@ def split_into_groups(males, females):
             if (male, female) not in match_scores.keys():
                 male_index = int(male[1]) - 1
                 female_index = int(female[1]) - 1
-                match_scores[(male,female)] = males[male][female_index] + females[female][male_index]
+                match_scores[(male,female)] = (males[male][female_index] + females[female][male_index])
                 
     sorted_match_scores = list(sorted(match_scores.items(), key=lambda x: x[1], reverse = False))
 
-    group_a = []
-    group_b = []
+    group = []
 
     for (male, female), match_score in sorted_match_scores:
-        if len(group_a) < 6 and male not in group_a and female not in group_a:
-            group_a.extend([male, female])
-        elif len(group_b) < 6 and male not in group_b and female not in group_b:
-            group_b.extend([male, female])
+        if male not in group and female not in group:
+            group.extend([male, female])
+    output = []
+    
+    #print(sorted_match_scores)
+    for i in range(len(group) - 1):
+        output.append((group[i], group[i+1]))
 
-    group_b = []
-    for male in males.keys():
-        if male not in group_a:
-            group_b.extend((male,))
-
-    for female in females.keys():
-        if female not in group_a:
-            group_b.extend((female,))
-
-    group_a.sort()
-    group_b.sort()
-    # print((group_a, group_b))
-    return ((group_a, group_b))
+    return output[0:len(output) + 1: 2]
 
 # males = {
 #     'M1': [2,5,3,4,6,1],
