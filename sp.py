@@ -21,7 +21,6 @@ def start(message):
     outputs_f[user_id] = {"F1":[],"F2":[],"F3":[],"F4":[],"F5":[],"F6":[]}
     count[user_id] = 1
     instructions(message)
-    help(message)
     prompt(message)
     
 @bot.message_handler(commands=['help'])
