@@ -16,8 +16,6 @@ def split_into_groups(males, females):
         if male not in group and female not in group:
             group.extend([male, female])
     output = []
-    
-    #print(sorted_match_scores)
     for i in range(len(group) - 1):
         output.append((group[i], group[i+1]))
 
