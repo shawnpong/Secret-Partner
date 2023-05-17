@@ -100,8 +100,11 @@ def handle_input(message):
         if len(input_list) != 6:
             raise ValueError
         input_set = set(input_list)
-        # if (len(input_set) != 6):
-        #     raise ValueError
+        print(input_set)
+        print(input_list)
+        if ((len(input_set) != 6) and (input_list != ['0', '0', '0', '0', '0', '0'])):
+            print("error")
+            raise ValueError
         for num in input_set:
             if not num.isnumeric() or int(num) < 0 or int(num) > 6:
                 raise ValueError             
