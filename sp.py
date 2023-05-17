@@ -98,7 +98,7 @@ def handle_input(message):
         input_list = message.text.split(',')
         if len(input_list) != 6:
             raise ValueError
-        if any(len(key) > 1 for key in input_list):\
+        if any(len(key) > 1 for key in input_list):
             raise ValueError
         input_set = set(input_list)
         # print(input_set)
