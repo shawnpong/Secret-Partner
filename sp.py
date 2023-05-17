@@ -67,14 +67,15 @@ def prompt(message):
 def finished(message):
     bot.send_message(message.chat.id, "All ranking strips have been submitted, if you would like a repeat of the result, please do /result.\n\nIf there was an error in the inputs, please do /restart and start from the beginning.")
 
-@bot.message_handler(content_types=['photo'])
+@bot.message_handler(content_types=['photo', 'document'])
 def handle_image(message):
-    photo_id = "https://media.npr.org/assets/img/2017/09/12/macaca_nigra_self-portrait-3e0070aa19a7fe36e802253048411a38f14a79f8-s1100-c50.jpg"
+    photo_id = "AgACAgQAAxkBAAEhMeZkZOO24PdNdPmBAv-U5vIc9ycysQACSLAxG0exBFKe58XSrk7n6gEAAwIAA3gAAy8E"
     return bot.send_photo(message.chat.id, photo_id)
 
 @bot.message_handler(commands=['pooja'])
 def pooja(message):
     global pooja_id
+    bot.send_voice(message.chat.id, "AwACAgUAAxkBAAEhMdxkZOK9mPsiB9B-VYsj195vY-AqkQACkQgAAq1cIFfYkK5O3RS6NS8E")
     return bot.send_sticker(message.chat.id, random.choice(pooja_id))
 
 @bot.message_handler(commands=['dontpressthis'])
