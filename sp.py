@@ -86,8 +86,6 @@ def dontpressthis(message):
 @bot.message_handler(content_types=['sticker'])           
 def handle_sticker(message):
     global sticker_id
-    # for d in range (len(sticker_id)):
-    #     bot.send_sticker(message.chat.id, sticker_id[d])
     return bot.send_sticker(message.chat.id, random.choice(sticker_id))
 
 @bot.message_handler(func=lambda message: True)
@@ -100,10 +98,13 @@ def handle_input(message):
         input_list = message.text.split(',')
         if len(input_list) != 6:
             raise ValueError
+        if any(len(key) > 1 for key in input_list):\
+            raise ValueError
         input_set = set(input_list)
-        print(input_set)
-        print(input_list)
-        if ((len(input_set) != 6) and (input_list != ['0', '0', '0', '0', '0', '0'])):
+        # print(input_set)
+        # print(input_list)
+        # if ((len(input_set) != 6) and (input_list != ['0', '0', '0', '0', '0', '0'])):
+        if len(input_set) != len(input_list) and '0' not in input_list:
             print("error")
             raise ValueError
         for num in input_set:
