@@ -38,6 +38,8 @@ def instructions(message):
 def result(message):
     global inputs_m, inputs_f, outputs_m, outputs_f
     user_id = message.chat.id
+    if user_id not in inputs_m:
+            return start(message)
     for key in inputs_m[user_id]:
         if len(inputs_m[user_id][key]) == 0:
             bot.send_message(message.chat.id, "bitch wtf there are no stored input values dumbfk")
@@ -77,7 +79,8 @@ def pooja(message):
 
 @bot.message_handler(commands=['dontpressthis'])
 def dontpressthis(message):
-    return bot.send_sticker(message.chat.id, "CAACAgIAAxkBAAEJAiVkZH4bGC3m-bfQ2lVHqIwjh-odowACnREAAg3s0UtQX20y8kWzLi8E")
+    bot.send_sticker(message.chat.id, "CAACAgIAAxkBAAEJAiVkZH4bGC3m-bfQ2lVHqIwjh-odowACnREAAg3s0UtQX20y8kWzLi8E")
+    return bot.send_message(message.chat.id, "last warning i told you not to press this")  
 
 @bot.message_handler(content_types=['sticker'])           
 def handle_sticker(message):
