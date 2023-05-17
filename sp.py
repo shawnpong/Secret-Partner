@@ -31,7 +31,7 @@ def help(message):
 
 @bot.message_handler(commands=['instructions'])
 def instructions(message):
-    bot.send_message(message.chat.id, "Please input the rankings of M1 - M6 for F1 - F6 and vice versa\n\nFor each of the inputs, please input the rankings separated by a comma, 6 being most preferred and 1 being least. e.g. 5,6,3,2,1,4\n\nMake sure to check that the rankings given to you have one of each number from 1 - 6 (i.e. there should be NO duplicates)\n\nif there are less than 12 people (e.g. missing one male and one female), their entries should be 0,0,0,0,0,0 AND when people rank them in their ranking sheet, it should be 0 (e.g. there is no M6 and F6, so ranking slip could look like this: 2,3,4,5,6,0)\n\n Please do /help for other commands")
+    bot.send_message(message.chat.id, "Please input the rankings of M1 - M6 for F1 - F6 and vice versa\n\nFor each of the inputs, please input the rankings separated by a comma, 6 being most preferred and 1 being least. e.g. 5,6,3,2,1,4\n\nMake sure to check that the rankings given to you have one of each number from 1 - 6 (i.e. there should be NO duplicates)\n\nif there are less than 12 people (e.g. missing one male and one female), their entries should be 0,0,0,0,0,0 AND when people rank them in their ranking sheet, it should be 0 (e.g. there is no M6 and F6, so ranking slip could look like this: 2,3,4,5,6,0)\n\n Please do /help for other commands or contact @p0ngster or @meganyeo for assistance")
 
 @bot.message_handler(commands=['result'])
 def result(message):
