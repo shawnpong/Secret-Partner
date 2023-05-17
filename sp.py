@@ -1,10 +1,12 @@
 import telebot
+import random
 from sksksks import *
 
 TOKEN = '5880854228:AAFPO4PGV6gOtBot3f-2H_ytqm2qs5b57Y0'
 
 bot = telebot.TeleBot(TOKEN)
 
+sticker_id = ["CAACAgUAAxkBAAEJAddkZHFQfrYEiAF_iQ0JtKnWIOVSWQACBgMAAqTLyVZ2ioYdBMRkQi8E", "CAACAgUAAxkBAAEJAedkZHO39edAz2yipCQeBuLCdj7KEgACJQIAAjsl0Fbt9j1dyRcUGi8E", "CAACAgUAAxkBAAEJAelkZHVytZnZLvFraJwRBjT-vJ8y-QAC-AIAAgXV0VarHvMRSvM8XS8E", "CAACAgUAAxkBAAEJAetkZHV03SizcZW0p6UPGS34zg2P9AACTAIAAm_t0VYgSG75rDZF8y8E", "CAACAgUAAxkBAAEJAe1kZHV2GsfOa9Vmr7nB8J0-6TtRCwAC9gMAAv-yyVb9jffZur5dLS8E", "CAACAgUAAxkBAAEJAe9kZHV37v_OT-QHb-S340e8OYMB4wAC_wIAAiiiyVYq1ox14XU9si8E", "CAACAgUAAxkBAAEJAfFkZHV5mDAUoWS6WL5HTYeOll2-vQACFQIAAi4vyVaVIYoHAAF17nEvBA", "CAACAgUAAxkBAAEJAfNkZHV6FDIEi0AhNIOxfiuVNuHRVwAC4wIAAsgyyFbVypKGfSgyOC8E", "CAACAgUAAxkBAAEJAfVkZHWxtAXjGcZELBG_amAUVF9gBAAC6QIAAoPCyFbE4lKLIxHx1y8E", "CAACAgUAAxkBAAEJAfZkZHWze4Jli8eSdNHxLy7dw-C6AQACNQMAAvkfyVa-OWL_3AiRcC8E", "CAACAgUAAxkBAAEJAflkZHW17FLmhhLk88Pg9Le8d4GnjwACagIAAtdRyVbizWsufVPj0i8E", "CAACAgUAAxkBAAEJAftkZHW3wPmsSb3Kt-VakQABOUysvt8AAmsBAAIG38lWyXOaVQ36MhIvBA", "CAACAgUAAxkBAAEJAf1kZHW5v8IMEUa8eUk3DkODUJwGNQACvgEAAgjeyFb5AAGoRSXF8TwvBA", "CAACAgUAAxkBAAEJAf5kZHW59xOUcO6GBdrvgGodtx18iAACewIAAroB0VYedEPdXzugGy8E", "CAACAgUAAxkBAAEJAgFkZHW7o-JCNzEIBOMKPKVhMQY0iwAC5AIAAtgQ0VbBYdkI715mLS8E", "CAACAgUAAxkBAAEJAgJkZHW8J8eFFwfGTlHDEMK0eejxJQAC7wIAAgpdyFaKU-H5Yfl8Ry8E", "CAACAgUAAxkBAAEJAgRkZHW91rCMyKxjEcu4xiJhhuWMUAAC8wEAAry9yFb6FA-xg-ozIy8E", "CAACAgUAAxkBAAEJAgVkZHW9R85h4mgTKHlgm17vBiaT-AACxwIAAp_S0VaoPZU4dIipGS8E", "CAACAgUAAxkBAAEJAgdkZHW-ThtMDS4P74K427HygYrYrgACOgIAAuAUyVZna2KkVUHQgy8E"]
 inputs_m = {}
 inputs_f = {}
 outputs_m = {}
@@ -61,7 +63,18 @@ def prompt(message):
 
 def finished(message):
     bot.send_message(message.chat.id, "All ranking strips have been submitted, if you would like a repeat of the result, please do /result.\n\nIf there was an error in the inputs, please do /restart and start from the beginning.")
-            
+
+@bot.message_handler(content_types=['photo'])
+def handle_image(message):
+    photo_id = "https://media.npr.org/assets/img/2017/09/12/macaca_nigra_self-portrait-3e0070aa19a7fe36e802253048411a38f14a79f8-s1100-c50.jpg"
+    return bot.send_photo(message.chat.id, photo_id)
+
+@bot.message_handler(content_types=['sticker'])           
+def handle_sticker(message):
+    global sticker_id
+    # for d in range (len(sticker_id)):
+    #     bot.send_sticker(message.chat.id, sticker_id[d])
+    return bot.send_sticker(message.chat.id, random.choice(sticker_id))
 
 @bot.message_handler(func=lambda message: True)
 def handle_input(message):
@@ -102,5 +115,5 @@ def handle_input(message):
         else:
             bot.send_message(message.chat.id, "Invalid input. Please enter 6 unique digits separated by commas e.g. 5,6,3,2,1,4. Ranking score should not exceed 6.\n\nPlease do /restart if you made a mistake with the inputs or are unsure of how to input the rankings.")
             prompt(message)
-
+    
 bot.polling()
