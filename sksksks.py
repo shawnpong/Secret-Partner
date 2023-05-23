@@ -8,7 +8,7 @@ def split_into_groups(males, females):
                 female_index = int(female[1]) - 1
                 match_scores[(male,female)] = (males[male][female_index] + females[female][male_index])
                 
-    sorted_match_scores = list(sorted(match_scores.items(), key=lambda x: x[1], reverse = True))
+    sorted_match_scores = list(sorted(match_scores.items(), key=lambda x: x[1], reverse = False))
 
     group = []
 

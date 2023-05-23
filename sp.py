@@ -32,7 +32,7 @@ def help(message):
 
 @bot.message_handler(commands=['instructions'])
 def instructions(message):
-    bot.send_message(message.chat.id, "Please input the rankings of M1 - M6 for F1 - F6 and vice versa\n\nFor each of the inputs, please input the rankings separated by a comma, 1 being most preferred and 6 being least. e.g. 5,6,3,2,1,4\n\nMake sure to check that the rankings given to you have one of each number from 1 - 6 (i.e. there should be NO duplicates)\n\nif there are less than 12 people (e.g. missing one male and one female), their entries should be 0,0,0,0,0,0 AND when people rank them in their ranking sheet, it should be 0 (e.g. there is no M6 and F6, so ranking slip could look like this: 2,3,4,5,6,0)\n\n Please do /help for other commands or contact @p0ngster or @meganyeo for assistance")
+    bot.send_message(message.chat.id, "Please input the rankings of M1 - M6 for F1 - F6 and vice versa\n\nFor each of the inputs, please input the rankings separated by a comma, 1 being most preferred and 6 being least. e.g. 5,6,3,2,1,4\n\nMake sure to check that the rankings given to you have one of each number from 1 - 6 (i.e. there should be NO duplicates)\n\nIf there are less than 12 people (e.g. missing M6 and F6), their entries should be 0,0,0,0,0,0 AND when people rank them in their ranking sheet, it should be 0 (e.g. there is no M6 and F6, so ranking slip could look like this: 2,3,4,5,6,0)\n\n Please do /help for other commands or contact @p0ngster or @meganyeo for assistance")
 
 @bot.message_handler(commands=['result'])
 def result(message):
@@ -51,7 +51,7 @@ def result(message):
             return prompt(message)
         outputs_f[user_id][key] = [int(i) for i in inputs_f[user_id][key]]       
     groups = split_into_groups(outputs_m[user_id], outputs_f[user_id])
-    bot.send_message(message.chat.id, f"The pairings are as follows:\n\n{groups[0][0]} {groups[0][1]}\n{groups[1][0]} {groups[1][1]}\n{groups[2][0]} {groups[2][1]}\n{groups[3][0]} {groups[3][1]}\n{groups[4][0]} {groups[4][1]}\n{groups[5][0]} {groups[5][1]}\n\nRefer to the above and pair up the freshies from the top to bottom pairings, ignore the respective pairings if freshie is not participating.\n\nWhen splitting them into their respective rooms, try to make it as even as possible (e.g. if all 6 pairs are present, put first 3 pairs into one room, and the last 3 pairs into the other room.\n\nIf there are 5 pairs, put the first 3 pairs in one room, 4th and 5th pair in the other room) pairings are important as this will be the first pairing that will be used for the first game that is played together.")
+    bot.send_message(message.chat.id, f"The pairings are as follows:\n\n{groups[0][0]} {groups[0][1]}\n{groups[1][0]} {groups[1][1]}\n{groups[2][0]} {groups[2][1]}\n{groups[3][0]} {groups[3][1]}\n{groups[4][0]} {groups[4][1]}\n{groups[5][0]} {groups[5][1]}\n\nRefer to the above and pair up the freshies from the top to bottom pairings, ignore the respective pairings if freshie is not participating(e.g. Ignore M6 and F6 is they are not here).\n\nWhen splitting them into their respective rooms, try to make it as even as possible (e.g. if all 6 pairs are present, put first 3 pairs into one room, and the last 3 pairs into the other room.\n\nIf there are 5 pairs, put the first 3 pairs in one room, 4th and 5th pair in the other room) pairings are important as this will be the first pairing that will be used for the first game that is played together.")
 
 def prompt(message):
     global count
