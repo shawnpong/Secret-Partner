@@ -75,7 +75,7 @@ def handle_image(message):
 @bot.message_handler(commands=['pooja'])
 def pooja(message):
     global pooja_id
-    bot.send_voice(message.chat.id, "AwACAgUAAxkBAAEhMdxkZOK9mPsiB9B-VYsj195vY-AqkQACkQgAAq1cIFfYkK5O3RS6NS8E")
+    bot.send_voice(message.chat.id, "AwACAgUAAxkBAAEhnhxkblGdQ142ovS1mmRBGsxSovYvaQACkQgAAq1cIFfYkK5O3RS6NS8E")
     return bot.send_sticker(message.chat.id, random.choice(pooja_id))
 
 @bot.message_handler(commands=['dontpressthis'])
