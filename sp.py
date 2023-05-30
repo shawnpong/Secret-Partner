@@ -101,9 +101,6 @@ def handle_input(message):
         if any(len(key) > 1 for key in input_list):
             raise ValueError
         input_set = set(input_list)
-        # print(input_set)
-        # print(input_list)
-        # if ((len(input_set) != 6) and (input_list != ['0', '0', '0', '0', '0', '0'])):
         if len(input_set) != len(input_list) and '0' not in input_list:
             print("error")
             raise ValueError
@@ -117,14 +114,14 @@ def handle_input(message):
             name = "M" + str(count[user_id])
             inputs_m[user_id][name] = (input_list)
             count[user_id] += 1
-            print(inputs_m)
+            # print(inputs_m)
             print(count)
             prompt(message)
         else:
             name = "F" + str(count[user_id] - 6)
             inputs_f[user_id][name] = (input_list)
             count[user_id] += 1
-            print(inputs_f)
+            # print(inputs_f)
             print(count)
             prompt(message)
     except ValueError:
