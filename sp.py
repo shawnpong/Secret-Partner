@@ -27,6 +27,7 @@ def start(message):
     outputs_m[user_id] = {"M1":[],"M2":[],"M3":[],"M4":[],"M5":[],"M6":[]}
     outputs_f[user_id] = {"F1":[],"F2":[],"F3":[],"F4":[],"F5":[],"F6":[]}
     count[user_id] = 1
+    print(count)
     instructions(message)
     prompt(message)
     
