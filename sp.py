@@ -17,7 +17,7 @@ inputs_f = {}
 outputs_m = {}
 outputs_f = {}
 count = {}
-
+x
 @bot.message_handler(commands=['start', 'restart'])
 def start(message):
     global inputs_m, inputs_f, count
